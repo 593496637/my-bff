@@ -6,7 +6,20 @@
       "Bash(dir /s src)",
       "Bash(npm run build:*)",
       "Bash(curl:*)",
-      "Bash(dir:*)"
+      "Bash(dir:*)",
+      "Read(//Users/likaikai/一灯/第六周-9.13/课件/yd-ai-bff/**)",
+      "Bash(pnpm run dev:*)",
+      "Bash(chmod:*)",
+      "Bash(xattr:*)",
+      "Bash(./killport.sh:*)",
+      "Bash(lsof:*)",
+      "Read(//Users/likaikai/learn/my-bff/src/**)",
+      "Bash(npm install:*)",
+      "Bash(pnpm add:*)",
+      "Bash(xargs kill:*)",
+      "Bash(kill:*)",
+      "Bash(git add:*)",
+      "Bash(git push:*)"
     ],
     "deny": [],
     "ask": []
