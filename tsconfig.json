@@ -1,0 +1,23 @@
+// tsconfig.json
+{
+  "compilerOptions": {
+    /* 基本选项 */
+    "target": "es2020", // 将代码编译到较新的 ES2020 版本
+    "module": "commonjs", // Node.js 使用的模块系统
+    "outDir": "./dist", // 编译后输出的 JS 文件目录
+    "rootDir": "./src", // TypeScript 源码的根目录
+
+    /* 严格类型检查选项 */
+    "strict": true, // 启用所有严格类型检查选项
+    "esModuleInterop": true, // 允许更方便地导入 CommonJS 模块
+
+    /* 其他选项 */
+    "skipLibCheck": true, // 跳过对声明文件 (*.d.ts) 的类型检查
+    "forceConsistentCasingInFileNames": true, // 确保文件名的大小写一致
+    "typeRoots": ["./node_modules/@types", "./src/@types"] // 指定类型声明文件的搜索路径
+  },
+  "include": [
+    "src/**/*", // 告诉编译器只编译 src 目录下的文件
+    "*.d.ts" // 包含根目录下的类型声明文件
+  ]
+}

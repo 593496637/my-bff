@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPA 测试页面</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 { color: #333; }
+        .nav a {
+            display: inline-block;
+            margin: 10px 15px 10px 0;
+            padding: 8px 16px;
+            background: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+        }
+        .nav a:hover { background: #0056b3; }
+        .content {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 SPA 路由回退测试</h1>
+
+        <div class="nav">
+            <a href="/">首页</a>
+            <a href="/about">关于页面</a>
+            <a href="/products">产品页面</a>
+            <a href="/contact">联系页面</a>
+            <a href="/api/users">API 测试</a>
+        </div>
+
+        <div class="content">
+            <h2>当前路径: <span id="currentPath"></span></h2>
+            <p><strong>测试说明:</strong></p>
+            <ul>
+                <li>点击上方链接测试前端路由</li>
+                <li>除了 /api 开头的路径，其他路径都会回退到这个页面</li>
+                <li>这就是 SPA (Single Page Application) 的路由回退机制</li>
+                <li>在实际项目中，前端框架会根据 URL 路径渲染对应的组件</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // 显示当前路径
+        document.getElementById('currentPath').textContent = window.location.pathname;
+
+        // 简单的前端路由处理（仅用于演示）
+        window.addEventListener('popstate', function(event) {
+            document.getElementById('currentPath').textContent = window.location.pathname;
+        });
+    </script>
+</body>
+</html>

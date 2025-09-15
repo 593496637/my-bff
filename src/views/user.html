@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{{ title }}</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 2rem;
+        background-color: #f4f4f9;
+      }
+      .card {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        margin: auto;
+      }
+      p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+      }
+      strong {
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h1>用户: {{ user.name }}</h1>
+      <p><strong>ID:</strong> {{ user.id }}</p>
+      <p><strong>Email:</strong> {{ user.email }}</p>
+    </div>
+  </body>
+</html>
