@@ -10,4 +10,5 @@ export interface User {
 // 定义 UserService 的能力
 export interface IUserService {
   getUser(id: string): User;
+  getAllUsers(): User[];
 }

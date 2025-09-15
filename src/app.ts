@@ -2,16 +2,17 @@
 
 import Koa, { Context } from 'koa';
 import Router from '@koa/router';
-import nunjucks from 'koa-nunjucks-2';
+const nunjucks = require('koa-nunjucks-2');
 import serve from 'koa-static';
 import historyApiFallback from 'koa2-connect-history-api-fallback';
 import path from 'path';
 import { createContainer, Lifetime } from 'awilix';
-import { scopePerRequest } from 'awilix-koa';
+import { scopePerRequest, loadControllers } from 'awilix-koa';
 
 // 手动导入控制器和服务
 import HomeController from './controllers/homeController';
 import UserController from './controllers/userController';
+import ApiController from './controllers/apiController';
 import UserService from './services/userService';
 
 // 创建 Koa 应用实例
@@ -32,42 +33,51 @@ app.use(serve(path.join(__dirname, 'public')));
 // --- 3. 配置 SPA 路由回退 ---
 app.use(historyApiFallback({
   index: '/',
-  whiteList: ['/api'] // API 路由不回退到首页
+  whiteList: ['/api', '/decorator'] // API 和装饰器路由不回退到首页
 }));
 
 // --- 4. 配置依赖注入容器 (Awilix) ---
 const container = createContainer();
-app.use(scopePerRequest(container));
 
-// 手动注册服务
-container.register({
-  userService: {
-    resolve: () => new UserService(),
-    lifetime: Lifetime.SINGLETON
-  }
+// 自动加载services (参考课件项目配置)
+container.loadModules([`${__dirname}/services/*.ts`], {
+  formatName: 'camelCase',
+  resolverOptions: {
+    lifetime: Lifetime.SCOPED,
+  },
 });
+
+// 必须在container配置完成后再设置
+app.use(scopePerRequest(container));
 
 // --- 5. 手动配置路由 ---
 const router = new Router();
 
 // 手动实例化控制器并设置路由
 const homeController = new HomeController();
+const apiController = new ApiController();
 
-// 等待容器加载完成后再解析服务
-let userController = null;
-try {
-  const userService = container.resolve('userService');
-  userController = new UserController({ userService });
-} catch (error) {
-  console.log('无法解析 userService，跳过用户路由');
-}
+// 容器会自动加载userService，不需要手动解析
+const userController = new UserController({ userService: container.resolve('userService') });
 
 // 设置路由
+// 页面路由
 router.get('/', homeController.index.bind(homeController));
-if (userController) {
-  router.get('/user/:id', userController.get.bind(userController));
-}
+router.get('/user/:id', userController.get.bind(userController));
 
+// API 路由
+router.get('/api/health', apiController.health.bind(apiController));
+router.get('/api/info', apiController.info.bind(apiController));
+router.get('/api/mock-data', apiController.mockData.bind(apiController));
+
+// 用户相关 API 路由
+router.get('/api/user/:id', userController.getUserApi.bind(userController));
+router.get('/api/users', userController.getUsersApi.bind(userController));
+
+// 先加载装饰器路由
+app.use(loadControllers(path.join(__dirname, 'controllers/*.ts'), { cwd: __dirname }));
+
+// 再加载传统路由
 app.use(router.routes());
 app.use(router.allowedMethods());
 
