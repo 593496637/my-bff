@@ -1,107 +1,105 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{{ title }}</title>
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 40px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: #333;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 40px;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        h1 {
-            color: #2c3e50;
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 2.5em;
-        }
-        .description {
-            font-size: 1.2em;
-            line-height: 1.6;
-            margin-bottom: 30px;
-            text-align: center;
-            color: #555;
-        }
-        .features {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 8px;
-            margin: 20px 0;
-        }
-        .features h2 {
-            color: #2c3e50;
-            margin-bottom: 20px;
-        }
-        .features ul {
-            list-style: none;
-            padding: 0;
-        }
-        .features li {
-            padding: 12px 0;
-            border-bottom: 1px solid #e9ecef;
-            font-size: 1.1em;
-        }
-        .features li:before {
-            content: "✨ ";
-            color: #667eea;
-            font-weight: bold;
-        }
-        .features li:last-child {
-            border-bottom: none;
-        }
-        .nav-links {
-            text-align: center;
-            margin-top: 40px;
-        }
-        .nav-links a {
-            display: inline-block;
-            margin: 0 15px;
-            padding: 12px 24px;
-            background: #667eea;
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            transition: background 0.3s;
-        }
-        .nav-links a:hover {
-            background: #5a67d8;
-        }
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 40px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        color: #333;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background: white;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      }
+      h1 {
+        color: #2c3e50;
+        text-align: center;
+        margin-bottom: 30px;
+        font-size: 2.5em;
+      }
+      .description {
+        font-size: 1.2em;
+        line-height: 1.6;
+        margin-bottom: 30px;
+        text-align: center;
+        color: #555;
+      }
+      .features {
+        background: #f8f9fa;
+        padding: 30px;
+        border-radius: 8px;
+        margin: 20px 0;
+      }
+      .features h2 {
+        color: #2c3e50;
+        margin-bottom: 20px;
+      }
+      .features ul {
+        list-style: none;
+        padding: 0;
+      }
+      .features li {
+        padding: 12px 0;
+        border-bottom: 1px solid #e9ecef;
+        font-size: 1.1em;
+      }
+      .features li:before {
+        content: "✨ ";
+        color: #667eea;
+        font-weight: bold;
+      }
+      .features li:last-child {
+        border-bottom: none;
+      }
+      .nav-links {
+        text-align: center;
+        margin-top: 40px;
+      }
+      .nav-links a {
+        display: inline-block;
+        margin: 0 15px;
+        padding: 12px 24px;
+        background: #667eea;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        transition: background 0.3s;
+      }
+      .nav-links a:hover {
+        background: #5a67d8;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <h1>{{ title }}</h1>
+      <h1>{{ title }}</h1>
 
-        <div class="description">
-            {{ description }}
-        </div>
+      <div class="description">{{ description }}</div>
 
-        <div class="features">
-            <h2>🚀 项目特性</h2>
-            <ul>
-                {% for feature in features %}
-                <li>{{ feature }}</li>
-                {% endfor %}
-            </ul>
-        </div>
+      <div class="features">
+        <h2>🚀 项目特性</h2>
+        <ul>
+          {% for feature in features %}
+          <li>{{ feature }}</li>
+          {% endfor %}
+        </ul>
+      </div>
 
-        <div class="nav-links">
-            <a href="/">返回首页</a>
-            <a href="/api/health">健康检查</a>
-            <a href="/api/list">API 测试</a>
-        </div>
+      <div class="nav-links">
+        <a href="/">返回首页</a>
+        <a href="/api/health">健康检查</a>
+        <a href="/api/list">API 测试</a>
+      </div>
     </div>
-</body>
+  </body>
 </html>
