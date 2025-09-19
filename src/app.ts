@@ -30,8 +30,9 @@ app.use(historyApiFallback({
 // --- 4. 配置依赖注入容器 ---
 const container = createContainer();
 
-// 自动加载 services
-container.loadModules([`${__dirname}/services/*.ts`], {
+// 自动加载 services (根据环境选择文件扩展名)
+const fileExtension = process.env.NODE_ENV === 'production' ? 'js' : 'ts';
+container.loadModules([`${__dirname}/services/*.${fileExtension}`], {
   formatName: 'camelCase',
   resolverOptions: {
     lifetime: Lifetime.SCOPED,
@@ -42,7 +43,7 @@ container.loadModules([`${__dirname}/services/*.ts`], {
 app.use(scopePerRequest(container));
 
 // --- 5. 自动加载路由控制器 (装饰器模式) ---
-app.use(loadControllers(`${__dirname}/routers/*.ts`, { cwd: __dirname }));
+app.use(loadControllers(`${__dirname}/routers/*.${fileExtension}`, { cwd: __dirname }));
 
 // --- 6. 启动服务 ---
 const port = process.env.PORT || 3000;

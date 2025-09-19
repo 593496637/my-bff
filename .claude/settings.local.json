@@ -20,7 +20,14 @@
       "Bash(kill:*)",
       "Bash(git add:*)",
       "Bash(git push:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(pm2 logs:*)",
+      "Bash(pm2 delete:*)",
+      "Bash(pm2 start:*)",
+      "Bash(pm2 list:*)",
+      "Bash(pm2 describe:*)",
+      "Bash(pm2 restart:*)",
+      "Bash(NODE_ENV=development PORT=3001 node dist/app.js)"
     ],
     "deny": [],
     "ask": []
